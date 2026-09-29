@@ -1,0 +1,86 @@
+:root {
+  --paper: #efe6d6;
+  --sheet: #f7f1e6;
+  --field: #fffdf8;
+  --ink: #1d1914;
+  --on-ink: #f7f1e6;
+  --muted: #5e564c;
+  --line: #d9cebc;
+  --phish: #8d2e28;
+  --phish-bg: #f3ddd9;
+  --sus: #8a5a10;
+  --sus-bg: #f3e6cc;
+  --legit: #1d6844;
+  --legit-bg: #dceadf;
+  --info: #5c564e;
+  --info-bg: #ece7de;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #1b1814;
+    --sheet: #24201b;
+    --field: #1f1b17;
+    --ink: #efe6d6;
+    --on-ink: #1b1814;
+    --muted: #b3a998;
+    --line: #3b342c;
+    --phish: #f0a39b;
+    --phish-bg: #3d2320;
+    --sus: #e6bf7a;
+    --sus-bg: #3a2e19;
+    --legit: #93d1ae;
+    --legit-bg: #1d3327;
+    --info: #b3a998;
+    --info-bg: #2e2922;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 15px/1.45 "Segoe UI", Helvetica, sans-serif; }
+header, main { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+header { padding: 28px 0 8px; display: flex; justify-content: space-between; gap: 24px; align-items: end; }
+h1 { font-family: Palatino, "Iowan Old Style", Georgia, serif; font-size: 40px; font-weight: 600; margin: 0; letter-spacing: -0.03em; }
+.kicker, .lede, .muted { color: var(--muted); }
+.kicker { margin: 0 0 4px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
+.lede { max-width: 420px; margin: 0; font-size: 14px; }
+main { display: grid; grid-template-columns: 340px minmax(0, 1fr); gap: 20px; padding: 18px 0 48px; align-items: start; }
+.panel { background: var(--sheet); border: 1px solid var(--line); border-radius: 8px; padding: 14px; }
+button, .file {
+  border: 1px solid var(--ink); background: var(--ink); color: var(--on-ink);
+  border-radius: 6px; padding: 8px 12px; font: inherit; cursor: pointer;
+}
+button:disabled { opacity: 0.5; cursor: default; }
+.row { display: flex; gap: 8px; align-items: center; margin-top: 10px; }
+.file input { display: none; }
+.status { min-height: 1.2em; font-size: 13px; color: var(--muted); }
+.verdict { font-family: Palatino, Georgia, serif; font-size: 42px; line-height: 1; margin: 0 0 8px; text-transform: capitalize; }
+.verdict.phishing { color: var(--phish); }
+.verdict.suspicious { color: var(--sus); }
+.verdict.legitimate { color: var(--legit); }
+.banner { border-radius: 8px; padding: 14px 16px; margin-bottom: 12px; border: 1px solid var(--line); }
+.banner.phishing { background: var(--phish-bg); }
+.banner.suspicious { background: var(--sus-bg); }
+.banner.legitimate { background: var(--legit-bg); }
+.action { margin: 8px 0 0; }
+h2 { font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; margin: 18px 0 8px; color: var(--muted); }
+.finding { border-top: 1px solid var(--line); padding: 10px 0; }
+.finding h3 { margin: 0 0 4px; font-size: 15px; }
+.sev { display: inline-block; font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; border-radius: 99px; padding: 1px 7px; margin-right: 6px; }
+.sev.critical, .sev.high { background: var(--phish-bg); color: var(--phish); }
+.sev.medium { background: var(--sus-bg); color: var(--sus); }
+.sev.low, .sev.info { background: var(--info-bg); color: var(--info); }
+.evidence { margin: 6px 0 0; padding-left: 16px; }
+.evidence li { font: 12px/1.4 ui-monospace, Menlo, monospace; word-break: break-all; }
+.scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+td { word-break: break-word; }
+th, td { text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); padding: 6px 8px 6px 0; }
+th { color: var(--muted); font-weight: 600; font-size: 12px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { border: 1px solid var(--line); border-radius: 99px; padding: 3px 8px; font-size: 12px; background: var(--field); }
+.chip.bad { border-color: var(--phish); background: var(--phish-bg); }
+.chip.good { border-color: var(--legit); background: var(--legit-bg); }
+@media (max-width: 800px) {
+  header { flex-direction: column; align-items: start; }
+  main { grid-template-columns: 1fr; }
+  h1 { font-size: 32px; }
+}

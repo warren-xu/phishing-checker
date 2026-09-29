@@ -1,0 +1,31 @@
+{
+  "organization": {
+    "name": "Halvorsen Machining",
+    "domains": ["halvorsenmachining.com"]
+  },
+  "people": [
+    {
+      "name": "Mark Halvorsen",
+      "role": "executive",
+      "domains": ["halvorsenmachining.com"]
+    },
+    {
+      "name": "Dana Ortiz",
+      "role": "employee",
+      "domains": ["halvorsenmachining.com"]
+    },
+    {
+      "name": "Renee Walsh",
+      "role": "vendor_contact",
+      "domains": ["brightlinemetals.com"]
+    }
+  ],
+  "vendors": [
+    {"name": "Brightline Metals", "domains": ["brightlinemetals.com"]},
+    {"name": "Keystone IT", "domains": ["keystoneit.com"]},
+    {"name": "Carbide Direct", "domains": ["carbidedirect.com"]},
+    {"name": "Rippling", "domains": ["rippling.com"]},
+    {"name": "Cloudvault", "domains": ["cloudvault.com"]}
+  ],
+  "trusted_authserv_ids": []
+}
