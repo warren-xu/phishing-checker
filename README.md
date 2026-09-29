@@ -17,7 +17,7 @@ This is a phishing checker for email inboxes. The checker returns a verdict with
 | [`content.py`](backend/phishing_checker/content.py) | `analyze_content`: credential lures, signature requests, payment changes, BEC pretexts, and government claims |
 | [`attachments.py`](backend/phishing_checker/attachments.py) | `analyze_attachments`: dangerous types, double extensions, PDF byte checks, and passworded archives |
 | [`domains.py`](backend/phishing_checker/domains.py) | Registrable-domain logic, lookalike and homoglyph detection, and the built-in lists of well-known senders, e-sign providers, notification platforms, and freemail |
-| [`context.py`](backend/phishing_checker/context.py) | `load_context`: reads the organization file ([`context/halvorsen.json`](backend/context/halvorsen.json)) |
+| [`context.py`](backend/phishing_checker/context.py) | `load_context`: reads the organization file ([`context/organization.json`](backend/context/organization.json)) |
 
 **Entry points**
 

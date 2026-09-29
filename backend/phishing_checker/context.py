@@ -9,7 +9,7 @@ from pathlib import Path
 from phishing_checker.domains import registrable_domain
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_CONTEXT = ROOT / "context" / "halvorsen.json"
+DEFAULT_CONTEXT = ROOT / "context" / "organization.json"
 
 
 @dataclass
