@@ -27,13 +27,17 @@ export function Checker() {
   const [status, setStatus] = useState("");
   const [busy, setBusy] = useState(false);
   const [report, setReport] = useState<Report | null>(null);
+  const [source, setSource] = useState("");
 
-  async function run(task: () => Promise<Report>) {
+  async function run(task: () => Promise<Report>, file: File) {
     setBusy(true);
     setStatus("Analyzing…");
     setReport(null);
+    setSource("");
     try {
-      setReport(await task());
+      const [result, text] = await Promise.all([task(), file.text()]);
+      setSource(text);
+      setReport(result);
       setStatus("");
     } catch (error) {
       setStatus((error as Error).message);
@@ -47,7 +51,7 @@ export function Checker() {
       setStatus(`${file.name} is ${(file.size / 1e6).toFixed(1)} MB. The limit is 4 MB.`);
       return;
     }
-    run(() => analyzeDirect(file));
+    run(() => analyzeDirect(file), file);
   }
 
   return (
@@ -73,7 +77,7 @@ export function Checker() {
           {status}
         </p>
       </section>
-      {report ? <ReportView report={report} /> : <section className="report empty" />}
+      {report ? <ReportView report={report} source={source} /> : <section className="report empty" />}
     </main>
   );
 }

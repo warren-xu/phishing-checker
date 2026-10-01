@@ -34,7 +34,7 @@ function FindingList({ items }: { items: Finding[] }) {
   );
 }
 
-export function ReportView({ report }: { report: Report }) {
+export function ReportView({ report, source }: { report: Report; source?: string }) {
   const { message, authentication: auth, identity } = report;
   const from = message.from;
   const rows: [string, string][] = [
@@ -64,6 +64,26 @@ export function ReportView({ report }: { report: Report }) {
           ))}
         </tbody>
       </table>
+
+      <h2>Body</h2>
+      {message.body ? (
+        <>
+          <p className="muted">
+            {message.body_source === "html"
+              ? "Visible text of the HTML part. The HTML itself is not rendered."
+              : "Plain-text part. Any HTML is not rendered."}
+          </p>
+          <pre className="body">{message.body}</pre>
+        </>
+      ) : (
+        <p>No readable body.</p>
+      )}
+      {source && (
+        <details className="raw">
+          <summary>Raw source</summary>
+          <pre className="body">{source}</pre>
+        </details>
+      )}
 
       <h2>Authentication</h2>
       <div className="chips">

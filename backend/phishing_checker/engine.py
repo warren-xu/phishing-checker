@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import re
+
 from phishing_checker.attachments import analyze_attachments
 from phishing_checker.auth import analyze_auth
 from phishing_checker.content import analyze_content
@@ -117,11 +119,27 @@ def analyze_message(raw: bytes | str, ctx: OrgContext | None = None) -> dict:
             "to": [addr.to_dict() for addr in email.to],
             "reply_to": [addr.to_dict() for addr in email.reply_to],
             "return_path": email.return_path,
+            **_body(email),
         },
         links=[item.to_dict() for item in links],
         attachments=[item.to_dict() for item in email.attachments],
         findings=findings,
     )
+
+
+_BODY_LIMIT = 50_000
+
+
+def _body(email) -> dict:
+    """Readable body for display. HTML is reduced to its visible text, never returned as markup."""
+    text = email.body_text.strip()
+    source = "text"
+    if not text:
+        text = email.html_visible_text
+        source = "html" if text.strip() else ""
+    text = re.sub(r"[ \t]+", " ", text)
+    text = re.sub(r"\n[ \t]*(\n[ \t]*)+", "\n\n", text).strip()
+    return {"body": text[:_BODY_LIMIT], "body_source": source}
 
 
 def _report(

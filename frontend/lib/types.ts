@@ -30,6 +30,8 @@ export interface Report {
     from?: Address | null;
     reply_to?: Address[];
     return_path?: string;
+    body?: string;
+    body_source?: "text" | "html" | "";
   };
   authentication: {
     authserv_id?: string;

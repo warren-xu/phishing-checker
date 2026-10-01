@@ -79,6 +79,13 @@ th { color: var(--muted); font-weight: 600; font-size: 12px; }
 .chip { border: 1px solid var(--line); border-radius: 99px; padding: 3px 8px; font-size: 12px; background: var(--field); }
 .chip.bad { border-color: var(--phish); background: var(--phish-bg); }
 .chip.good { border-color: var(--legit); background: var(--legit-bg); }
+pre.body {
+  margin: 0; max-height: 420px; overflow: auto; padding: 10px 12px;
+  background: var(--field); border: 1px solid var(--line); border-radius: 6px;
+  font: 12px/1.5 ui-monospace, Menlo, monospace; white-space: pre-wrap; word-break: break-word;
+}
+.raw { margin-top: 8px; }
+.raw summary { cursor: pointer; color: var(--muted); font-size: 13px; margin-bottom: 6px; }
 @media (max-width: 800px) {
   header { flex-direction: column; align-items: start; }
   main { grid-template-columns: 1fr; }
